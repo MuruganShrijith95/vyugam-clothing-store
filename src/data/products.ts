@@ -507,6 +507,597 @@ export const PRODUCTS_DATA: Product[] = [
       'Do not brush on embroidery'
     ],
     reviews: []
+  },
+  // --- EVERYDAY & FESTIVE EDIT: 10 styles from Rs 399 to Rs 2,899 ---
+  {
+    id: 'prod-w-7',
+    name: 'Ilkal Handloom Cotton Saree',
+    subtitle: 'With Traditional Zari Border & Running Blouse Piece',
+    gender: 'women',
+    category: 'sarees',
+    categoryLabel: 'Banarasi Sarees',
+    price: 1299,
+    originalPrice: 2199,
+    discountPercentage: 41,
+    images: [
+      'https://images.unsplash.com/photo-1609748340041-f5d61e061ebc?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1618901185975-d59f7091bcfe?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1678705730064-a7ecbab4b3fb?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1679006831648-7c9ea12e5807?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'Woven on pit looms in Ilkal, north Karnataka, where the body and pallu are joined by the traditional tope teni technique. The cotton breathes through long Indian summers while the zari border keeps it festival-ready.',
+    fabric: 'Pure Cotton',
+    occasion: 'Festive',
+    color: 'Sage Green',
+    colorHex: '#7A8B6F',
+    sizes: ['Free Size'],
+    inStock: true,
+    stockCount: 22,
+    rating: 4.6,
+    reviewCount: 87,
+    isBestseller: true,
+    craftsmanship: 'Handloom Pit Loom Weaving with Kondi Technique Joinery',
+    careInstructions: [
+      'Dry clean for the first two washes',
+      'Hand wash separately in cold water thereafter',
+      'Do not wring or bleach',
+      'Iron on medium heat with a cotton cloth over the zari'
+    ],
+    styleTips: 'Drape in the Nivi style with oxidised silver jhumkas and a contrast maroon blouse for a classic South Indian festive look.',
+    reviews: [
+      {
+        id: 'rev-prod-w-7-1',
+        userName: 'Lakshmi Iyer',
+        userCity: 'Bengaluru',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'Real handloom, not powerloom',
+        comment: 'You can feel the difference in the weave immediately. The zari has not darkened after three washes.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-w-7-2',
+        userName: 'Sneha Rao',
+        userCity: 'Hubli',
+        rating: 4,
+        date: '29 Jul 2026',
+        title: 'Lovely for daily festive wear',
+        comment: 'Very comfortable in Karnataka heat. Blouse piece is generous, my tailor was happy.',
+        verifiedPurchase: true
+      }
+    ]
+  },
+  {
+    id: 'prod-w-8',
+    name: 'Mysore Georgette Everyday Saree',
+    subtitle: 'Featherlight Drape with Contrast Satin Border',
+    gender: 'women',
+    category: 'sarees',
+    categoryLabel: 'Banarasi Sarees',
+    price: 899,
+    originalPrice: 1599,
+    discountPercentage: 44,
+    images: [
+      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1610189025857-f42fe6e8dd91?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1610030469839-f909584b43f1?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1641699862936-be9f49b1c38d?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1610030469668-8e9f641aaf27?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'A no-fuss georgette saree that holds its pleats through a full workday. Light enough for the commute, structured enough for a boardroom, with a contrast satin border that needs no ironing.',
+    fabric: 'Georgette',
+    occasion: 'Workwear',
+    color: 'Royal Indigo',
+    colorHex: '#2C3E7B',
+    sizes: ['Free Size'],
+    inStock: true,
+    stockCount: 31,
+    rating: 4.5,
+    reviewCount: 64,
+    isNewArrival: true,
+    craftsmanship: 'Fine Georgette Weave with Machine-Finished Satin Border',
+    careInstructions: [
+      'Machine wash on gentle cycle in a laundry bag',
+      'Do not tumble dry',
+      'Line dry in shade',
+      'Low heat iron if needed'
+    ],
+    styleTips: 'Keep the pallu pinned and pair with a full-sleeve blouse and a slim belt for office wear.',
+    reviews: [
+      {
+        id: 'rev-prod-w-8-1',
+        userName: 'Divya Menon',
+        userCity: 'Kochi',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'My go-to office saree',
+        comment: 'Drapes in five minutes and does not crease on the scooter ride.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-w-8-2',
+        userName: 'Radhika Nair',
+        userCity: 'Chennai',
+        rating: 4,
+        date: '29 Jul 2026',
+        title: 'Great weight for summer',
+        comment: 'Colour is exactly as shown. Needs a petticoat in a matching shade.',
+        verifiedPurchase: true
+      }
+    ]
+  },
+  {
+    id: 'prod-w-9',
+    name: 'Chanderi Silk Kurta Set with Dupatta',
+    subtitle: 'Three-Piece Set with Straight Pants & Zari Dupatta',
+    gender: 'women',
+    category: 'kurta-sets',
+    categoryLabel: 'Kurta Sets',
+    price: 2499,
+    originalPrice: 3999,
+    discountPercentage: 38,
+    images: [
+      'https://images.unsplash.com/photo-1756483509254-3cc48a5a15b2?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1756483510802-0acac24ab4e8?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1571908599407-cdb918ed83bf?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1756483510900-ec43edbafb45?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1668371679302-a8ec781e876e?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'Chanderi from Madhya Pradesh has a glassy transparency no blend can copy. This set pairs a zari-buti kurta with straight pants and a matching dupatta, cut for movement through long festive evenings.',
+    fabric: 'Chanderi Silk',
+    occasion: 'Festive',
+    color: 'Antique Gold',
+    colorHex: '#B8912F',
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    inStock: true,
+    stockCount: 16,
+    rating: 4.8,
+    reviewCount: 118,
+    isBestseller: true,
+    isFestiveSpecial: true,
+    craftsmanship: 'Handwoven Chanderi with Nakshi Zari Buti Work',
+    careInstructions: [
+      'Dry clean only',
+      'Store folded in a muslin cloth, not on a hanger',
+      'Keep away from direct sunlight',
+      'Do not spray perfume directly on the fabric'
+    ],
+    styleTips: 'Wear with kundan studs and juttis. Skip the necklace and let the zari buti do the talking.',
+    reviews: [
+      {
+        id: 'rev-prod-w-9-1',
+        userName: 'Meera Joshi',
+        userCity: 'Indore',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'Chanderi as it should be',
+        comment: 'I grew up near Chanderi and this is the real weave. The transparency and the zari are authentic.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-w-9-2',
+        userName: 'Kavya Reddy',
+        userCity: 'Hyderabad',
+        rating: 5,
+        date: '29 Jul 2026',
+        title: 'Wore it for Diwali puja',
+        comment: 'Three people asked where I bought it. The pants are properly lined, which most brands skip.',
+        verifiedPurchase: true
+      }
+    ]
+  },
+  {
+    id: 'prod-w-10',
+    name: 'Bandhani Lightweight Lehenga Choli',
+    subtitle: 'Kutch Tie-Dye Lehenga with Choli & Net Dupatta',
+    gender: 'women',
+    category: 'lehengas',
+    categoryLabel: 'Lehenga Choli',
+    price: 2899,
+    originalPrice: 4999,
+    discountPercentage: 42,
+    images: [
+      'https://images.unsplash.com/photo-1574847872646-abff244bbd87?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1619715613791-89d35b51ff81?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1649930055986-ca57250a7fd4?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1668371679302-a8ec781e876e?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1601432093209-8af1fd74b054?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'Bandhani tied by hand in Kutch, each dot knotted before dyeing. Built on light georgette rather than heavy canvas, so you can actually dance in it through a full sangeet.',
+    fabric: 'Georgette',
+    occasion: 'Wedding',
+    color: 'Marigold Yellow',
+    colorHex: '#E8A317',
+    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    inStock: true,
+    stockCount: 9,
+    rating: 4.7,
+    reviewCount: 73,
+    isFestiveSpecial: true,
+    craftsmanship: 'Hand-Tied Kutchi Bandhani on Georgette',
+    careInstructions: [
+      'Dry clean only',
+      'Expect a slight colour bleed on first clean, which is natural to bandhani',
+      'Do not soak',
+      'Store flat with tissue between folds'
+    ],
+    styleTips: 'Best for sangeet and haldi. Pair with mirror-work juttis and leave the dupatta on one shoulder for the twirl.',
+    reviews: [
+      {
+        id: 'rev-prod-w-10-1',
+        userName: 'Ishita Patel',
+        userCity: 'Ahmedabad',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'Danced all night in this',
+        comment: 'Under 900 grams, which matters when the sangeet runs to 2am. Real bandhani knots, you can see them.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-w-10-2',
+        userName: 'Nikita Shah',
+        userCity: 'Surat',
+        rating: 4,
+        date: '29 Jul 2026',
+        title: 'Beautiful colour, runs slightly big',
+        comment: 'Ordered S, needed a small alteration at the waist. The yellow is stunning in photos.',
+        verifiedPurchase: true
+      }
+    ]
+  },
+  {
+    id: 'prod-w-11',
+    name: 'Indo-Western Anarkali Maxi Dress',
+    subtitle: 'Floor-Length Flare with Concealed Side Pockets',
+    gender: 'women',
+    category: 'women-dresses',
+    categoryLabel: 'Indo-Western Dresses',
+    price: 1899,
+    originalPrice: 3200,
+    discountPercentage: 41,
+    images: [
+      'https://images.unsplash.com/photo-1668371679302-a8ec781e876e?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1756483510802-0acac24ab4e8?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1756483510900-ec43edbafb45?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1668371679302-a8ec781e876e?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1601571115502-83ca3095735b?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'An Anarkali silhouette rebuilt as a maxi dress, with a fitted yoke, a full ghera flare and side pockets deep enough for a phone. Reception-ready without the dupatta management.',
+    fabric: 'Georgette',
+    occasion: 'Party',
+    color: 'Deep Wine',
+    colorHex: '#6B1F3B',
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    inStock: true,
+    stockCount: 18,
+    rating: 4.6,
+    reviewCount: 95,
+    isNewArrival: true,
+    craftsmanship: 'Panelled Ghera Construction with Concealed Seam Pockets',
+    careInstructions: [
+      'Hand wash cold or dry clean',
+      'Do not bleach',
+      'Hang dry on a padded hanger',
+      'Steam rather than iron the flare'
+    ],
+    styleTips: 'Works for receptions and sangeet after-parties. Add a statement cuff and heels; no dupatta needed.',
+    reviews: [
+      {
+        id: 'rev-prod-w-11-1',
+        userName: 'Aditi Kulkarni',
+        userCity: 'Mumbai',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'Pockets in an Anarkali, finally',
+        comment: 'Perfect for receptions where you are holding a plate and a phone. Flare is enormous.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-w-11-2',
+        userName: 'Shreya Bose',
+        userCity: 'Kolkata',
+        rating: 4,
+        date: '29 Jul 2026',
+        title: 'Gorgeous but order true size',
+        comment: 'The yoke is fitted. I went one size up and it was right.',
+        verifiedPurchase: true
+      }
+    ]
+  },
+  {
+    id: 'prod-w-12',
+    name: 'Sanganeri Block Print Co-ord Set',
+    subtitle: 'Cotton Shirt & Wide-Leg Trouser Set',
+    gender: 'women',
+    category: 'co-ords',
+    categoryLabel: 'Co-ord Sets',
+    price: 1499,
+    originalPrice: 2499,
+    discountPercentage: 40,
+    images: [
+      'https://images.unsplash.com/photo-1768651925875-d1523ed07cb6?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1777888766761-6af980dc6ef6?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1764583473839-63a1afa95667?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1655288828238-21d86ec971c3?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1667665970118-f55705003914?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'Hand block printed in Sanganer with vegetable dyes, cut as a relaxed shirt and wide-leg trousers. Wear it as a set for brunch or split it across the week.',
+    fabric: 'Pure Cotton',
+    occasion: 'Casual',
+    color: 'Forest Teal',
+    colorHex: '#1F5F5B',
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    inStock: true,
+    stockCount: 26,
+    rating: 4.5,
+    reviewCount: 58,
+    isNewArrival: true,
+    craftsmanship: 'Sanganeri Hand Block Printing with Natural Vegetable Dyes',
+    careInstructions: [
+      'Wash separately for the first three washes',
+      'Cold water, mild detergent',
+      'Dry in shade to protect the vegetable dyes',
+      'Medium iron'
+    ],
+    styleTips: 'Split the set: the shirt over jeans, the trousers with a plain tee. Two outfits for the price of one.',
+    reviews: [
+      {
+        id: 'rev-prod-w-12-1',
+        userName: 'Tanvi Agarwal',
+        userCity: 'Jaipur',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'Block print is genuinely hand done',
+        comment: 'You can see the tiny registration marks where the blocks meet. Machine prints never have that.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-w-12-2',
+        userName: 'Pooja Verma',
+        userCity: 'Delhi',
+        rating: 4,
+        date: '29 Jul 2026',
+        title: 'Very comfortable for work from home',
+        comment: 'Cotton is thick and good quality. Trousers are long, I am 5ft2 and hemmed them.',
+        verifiedPurchase: true
+      }
+    ]
+  },
+  {
+    id: 'prod-m-6',
+    name: 'Lucknowi Chikankari Cotton Kurta',
+    subtitle: 'Hand-Embroidered Shadow Work on Pure Cotton',
+    gender: 'men',
+    category: 'men-kurtas',
+    categoryLabel: 'Men Kurtas',
+    price: 1199,
+    originalPrice: 1999,
+    discountPercentage: 40,
+    images: [
+      'https://images.unsplash.com/photo-1734418038517-ffc3a6a6751f?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1734418038940-2e5ee6a1b478?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1734418040900-e964f84e8abb?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1734418046223-567d550f457d?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1734418046848-6d168e211b45?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'Chikankari embroidered by hand in Lucknow, where the shadow work sits on the reverse of the cloth so the motif glows through. Cut long with side slits and a mandarin placket.',
+    fabric: 'Pure Cotton',
+    occasion: 'Festive',
+    color: 'Ivory White',
+    colorHex: '#F5F1E6',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    inStock: true,
+    stockCount: 24,
+    rating: 4.7,
+    reviewCount: 104,
+    isBestseller: true,
+    craftsmanship: 'Hand Chikankari Shadow Work (Bakhiya) by Lucknow Artisans',
+    careInstructions: [
+      'Hand wash in cold water with mild detergent',
+      'Never brush or scrub the embroidery',
+      'Dry flat in shade',
+      'Iron on reverse with a pressing cloth'
+    ],
+    styleTips: 'Wear over churidar for festivals or with off-white linen trousers and loafers for a summer wedding brunch.',
+    reviews: [
+      {
+        id: 'rev-prod-m-6-1',
+        userName: 'Arjun Malhotra',
+        userCity: 'Lucknow',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'Real bakhiya work',
+        comment: 'I am from Lucknow and know chikan. The shadow work is done properly on the reverse, not printed.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-m-6-2',
+        userName: 'Rohit Sharma',
+        userCity: 'Noida',
+        rating: 5,
+        date: '29 Jul 2026',
+        title: 'Wore it for Eid',
+        comment: 'Cotton is soft from the first wear. Length is right for 5ft10.',
+        verifiedPurchase: true
+      }
+    ]
+  },
+  {
+    id: 'prod-m-7',
+    name: 'Khadi Cotton Nehru Jacket',
+    subtitle: 'Handspun Khadi with Full Cotton Lining',
+    gender: 'men',
+    category: 'nehru-jackets',
+    categoryLabel: 'Nehru Jackets',
+    price: 1499,
+    originalPrice: 2499,
+    discountPercentage: 40,
+    images: [
+      'https://images.unsplash.com/photo-1710242350089-65eef7e49364?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1710242350089-65eef7e49364?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1785613590152-63d713bc94b4?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1534217466718-ef4950786e24?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1634410251313-b65c51944ab3?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'Handspun, handwoven khadi that gets softer every year. Fully lined in cotton with five buttons and two welt pockets, structured enough to sharpen a plain kurta instantly.',
+    fabric: 'Khadi',
+    occasion: 'Festive',
+    color: 'Charcoal Navy',
+    colorHex: '#22293D',
+    sizes: ['38', '40', '42', '44', '46'],
+    inStock: true,
+    stockCount: 19,
+    rating: 4.6,
+    reviewCount: 71,
+    craftsmanship: 'Handspun Khadi Handwoven on Charkha, Fully Cotton Lined',
+    careInstructions: [
+      'Dry clean recommended',
+      'Spot clean small marks immediately',
+      'Air out after each wear instead of washing',
+      'Steam to remove creases'
+    ],
+    styleTips: 'The fastest upgrade to any plain kurta. Also works over a white shirt with chinos for festive office days.',
+    reviews: [
+      {
+        id: 'rev-prod-m-7-1',
+        userName: 'Vikram Nair',
+        userCity: 'Pune',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'Khadi that breathes',
+        comment: 'Wore it through a four-hour reception in Pune humidity and stayed comfortable.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-m-7-2',
+        userName: 'Karthik Subramanian',
+        userCity: 'Coimbatore',
+        rating: 4,
+        date: '29 Jul 2026',
+        title: 'Good structure, size up',
+        comment: 'Chest sizing runs slim. I took 42 for a 40 chest and it sits right over a kurta.',
+        verifiedPurchase: true
+      }
+    ]
+  },
+  {
+    id: 'prod-m-8',
+    name: 'Pure Linen Mandarin Collar Shirt',
+    subtitle: 'Breathable 60-Lea European Flax Linen',
+    gender: 'men',
+    category: 'linen-shirts',
+    categoryLabel: 'Khadi & Linen Shirts',
+    price: 1349,
+    originalPrice: 2299,
+    discountPercentage: 41,
+    images: [
+      'https://images.unsplash.com/photo-1693443688057-85f57b872a3c?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1713881587420-113c1c43e28a?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1713881676551-b16f22ce4719?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1713881842156-3d9ef36418cc?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1591357037205-166318b51afd?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'Pure 60-lea linen with a mandarin collar, so it reads formal without a tie. Linen creases by nature; that fall is the point, not a flaw.',
+    fabric: 'Pure Linen',
+    occasion: 'Workwear',
+    color: 'Oat Beige',
+    colorHex: '#D8C7A8',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    inStock: true,
+    stockCount: 28,
+    rating: 4.5,
+    reviewCount: 82,
+    isNewArrival: true,
+    craftsmanship: '60-Lea European Flax Linen, Garment Washed for Softness',
+    careInstructions: [
+      'Machine wash cold on gentle cycle',
+      'Do not wring',
+      'Line dry and iron while slightly damp',
+      'Wash dark and light linens separately'
+    ],
+    styleTips: 'Tuck it in with pleated trousers for the office, or leave it open over a white tee on weekends.',
+    reviews: [
+      {
+        id: 'rev-prod-m-8-1',
+        userName: 'Sanjay Gupta',
+        userCity: 'Ahmedabad',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'Actual linen, not a blend',
+        comment: 'You can tell from how it drapes and cools. Survives Gujarat summers.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-m-8-2',
+        userName: 'Imran Qureshi',
+        userCity: 'Bhopal',
+        rating: 4,
+        date: '29 Jul 2026',
+        title: 'Creases, as linen does',
+        comment: 'If you want a crisp shirt this is not it. If you want linen, it is excellent.',
+        verifiedPurchase: true
+      }
+    ]
+  },
+  {
+    id: 'prod-m-9',
+    name: 'Handloom Cotton Essential Tee',
+    subtitle: 'Everyday Handloom Jersey with Side Vents',
+    gender: 'men',
+    category: 'casual-tees',
+    categoryLabel: 'Casual Tees',
+    price: 399,
+    originalPrice: 799,
+    discountPercentage: 50,
+    images: [
+      'https://images.unsplash.com/photo-1713881649391-a1c8ddaf83cd?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1740711152088-88a009e877bb?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1746436576869-bf5082894f5c?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1617117475026-2eb3e68b63cf?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1582261484646-a545de6d2382?auto=format&fit=crop&w=1000&q=80'
+    ],
+    description: 'A plain handloom cotton tee at a price that makes buying three easy. Bio-washed so it will not pill, with side vents and a collar that keeps its shape.',
+    fabric: 'Pure Cotton',
+    occasion: 'Casual',
+    color: 'Stone Grey',
+    colorHex: '#8A8580',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    inStock: true,
+    stockCount: 45,
+    rating: 4.4,
+    reviewCount: 139,
+    isBestseller: true,
+    craftsmanship: 'Handloom Cotton Jersey, Bio-Washed and Pre-Shrunk',
+    careInstructions: [
+      'Machine wash cold, inside out',
+      'Tumble dry low or line dry',
+      'Do not iron over any print',
+      'Wash with similar colours'
+    ],
+    styleTips: 'The layer under every Nehru jacket and open linen shirt. Buy the stone grey and the ivory together.',
+    reviews: [
+      {
+        id: 'rev-prod-m-9-1',
+        userName: 'Nikhil Deshpande',
+        userCity: 'Nagpur',
+        rating: 5,
+        date: '12 Aug 2026',
+        title: 'Best value on the site',
+        comment: 'Bought three. Pre-shrunk claim is true, no change after six washes.',
+        verifiedPurchase: true
+      },
+      {
+        id: 'rev-prod-m-9-2',
+        userName: 'Farhan Ali',
+        userCity: 'Hyderabad',
+        rating: 4,
+        date: '29 Jul 2026',
+        title: 'Good cotton for the price',
+        comment: 'Slightly boxy fit, which I like. Neck has held up well.',
+        verifiedPurchase: true
+      }
+    ]
   }
 ];
 
@@ -521,7 +1112,8 @@ export const CATEGORIES_LIST = [
   { id: 'nehru-jackets', label: 'Nehru Jackets & Waistcoats', gender: 'men' },
   { id: 'sherwanis', label: 'Wedding Sherwanis', gender: 'men' },
   { id: 'linen-shirts', label: 'Pure Linen Shirts', gender: 'men' },
-  { id: 'trousers-chinos', label: 'Chinos & Trousers', gender: 'men' }
+  { id: 'trousers-chinos', label: 'Chinos & Trousers', gender: 'men' },
+  { id: 'casual-tees', label: 'Everyday Cotton Tees', gender: 'men' }
 ];
 
 export const INDIAN_STATES = [

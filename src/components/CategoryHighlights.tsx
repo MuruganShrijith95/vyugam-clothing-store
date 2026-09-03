@@ -16,6 +16,8 @@ const CATEGORIES = [
   { id: 'nehru-jackets', label: 'Nehru Jackets', gender: 'men', image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=300&q=80' },
   { id: 'linen-shirts', label: 'Khadi & Linen Shirts', gender: 'men', image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=300&q=80' },
   { id: 'women-dresses', label: 'Indo-Western Dresses', gender: 'women', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=300&q=80' },
+  { id: 'co-ords', label: 'Co-ord Sets', gender: 'women', image: 'https://images.unsplash.com/photo-1729347917808-e3e35a462fec?auto=format&fit=crop&w=300&q=80' },
+  { id: 'casual-tees', label: 'Everyday Tees', gender: 'men', image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=300&q=80' },
   { id: 'sherwanis', label: 'Royal Sherwanis', gender: 'men', image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=300&q=80' }
 ];
 
