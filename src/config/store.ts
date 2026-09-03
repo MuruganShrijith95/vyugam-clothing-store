@@ -6,12 +6,12 @@
 //
 // This MUST be replaced with the real VYUGAM WhatsApp Business number before
 // going live, otherwise orders are sent to a stranger.
-export const WHATSAPP_NUMBER = '919876543210';
+export const WHATSAPP_NUMBER: string = '917550371346';
 
 export const STORE_NAME = 'VYUGAM';
 
 /** The dummy number shipped with the template; used to guard against going live with it. */
-const PLACEHOLDER_NUMBER = '919876543210';
+const PLACEHOLDER_NUMBER: string = '919876543210';
 
 /** False while WHATSAPP_NUMBER is still the placeholder, so the UI can warn instead of misdelivering. */
 export const isWhatsAppConfigured = (): boolean =>
