@@ -20,7 +20,7 @@ import { OrderSuccessModal } from './components/OrderSuccessModal';
 import { OrdersListModal } from './components/OrdersListModal';
 import { WishlistModal } from './components/WishlistModal';
 import { CustomerTestimonials } from './components/CustomerTestimonials';
-import { WhatsAppSupportButton } from './components/WhatsAppSupportButton';
+import { FloatingContactDock } from './components/FloatingContactDock';
 import { Footer } from './components/Footer';
 
 const INITIAL_FILTERS: FilterState = {
@@ -194,8 +194,8 @@ export const AppContent: React.FC = () => {
       {/* Footer */}
       <Footer />
 
-      {/* WhatsApp Stylist Floating Widget */}
-      <WhatsAppSupportButton />
+      {/* WhatsApp + Telegram Floating Contact Dock */}
+      <FloatingContactDock />
 
       {/* Modals & Drawers */}
       <ProductModal

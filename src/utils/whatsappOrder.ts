@@ -1,9 +1,9 @@
 import { Order, PaymentMethod } from '../types';
 import { formatINR } from './pincodeChecker';
-import { STORE_NAME, WHATSAPP_NUMBER } from '../config/store';
+import { STORE_NAME, WHATSAPP_NUMBER, UPI_VPA } from '../config/store';
 
 const PAYMENT_LABELS: Record<PaymentMethod, string> = {
-  upi: 'UPI (payment link to be shared)',
+  upi: 'UPI',
   cod: 'Cash on Delivery',
   card: 'Card / NetBanking',
   netbanking: 'NetBanking'
@@ -60,7 +60,14 @@ export const buildOrderMessage = (order: Order): string => {
     `Delivery: ${order.shippingFee === 0 ? 'FREE' : formatINR(order.shippingFee)}`,
     `*Total: ${formatINR(order.total)}*`,
     '',
-    `*Payment:* ${PAYMENT_LABELS[order.paymentMethod]}`,
+    `*Payment:* ${PAYMENT_LABELS[order.paymentMethod]}`
+  );
+
+  if (order.paymentMethod === 'upi') {
+    lines.push(`Paid to: ${UPI_VPA}`, `UPI reference: ${order.id}`);
+  }
+
+  lines.push(
     `*Expected delivery:* ${order.estimatedDeliveryDate}`,
     '',
     '*Deliver to*',

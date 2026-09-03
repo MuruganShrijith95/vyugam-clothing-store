@@ -20,13 +20,22 @@ import { ShippingAddress, PaymentMethod, Order } from '../types';
 import { checkDeliveryPincode, formatINR } from '../utils/pincodeChecker';
 import { INDIAN_STATES } from '../data/products';
 import { buildOrderWhatsAppUrl, openWhatsAppOrder } from '../utils/whatsappOrder';
-import { isWhatsAppConfigured } from '../config/store';
+import { isWhatsAppConfigured, isUpiConfigured, UPI_VPA } from '../config/store';
+import {
+  UpiApp,
+  UPI_APP_LABELS,
+  buildUpiUrl,
+  buildUpiQrDataUrl,
+  supportsUpiIntent
+} from '../utils/upiPayment';
 
 interface CheckoutModalProps {
   isOpen: boolean;
   onClose: () => void;
   onOrderPlaced: (order: Order) => void;
 }
+
+const makeOrderId = (): string => `VY-${Math.floor(100000 + Math.random() * 900000)}`;
 
 export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   isOpen,
@@ -48,9 +57,13 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     addressType: 'Home'
   });
 
-  const [selectedPayment, setSelectedPayment] = useState<PaymentMethod>('upi');
-  const [upiId, setUpiId] = useState('');
-  const [upiApp, setUpiApp] = useState<'gpay' | 'phonepe' | 'paytm' | 'qr'>('qr');
+  const [selectedPayment, setSelectedPayment] = useState<PaymentMethod>(
+    isUpiConfigured() ? 'upi' : 'cod'
+  );
+  const [upiApp, setUpiApp] = useState<UpiApp>('any');
+  // Reserved up front so the UPI reference on the QR matches the order we file.
+  const [orderId, setOrderId] = useState<string>(() => makeOrderId());
+  const [upiQrDataUrl, setUpiQrDataUrl] = useState<string>('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   // Held when the browser blocks the WhatsApp tab, so we can offer a manual link.
@@ -70,6 +83,19 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     }
   }, [address.pincode]);
 
+  // Regenerate the payee QR whenever the payable amount or order reference changes.
+  useEffect(() => {
+    if (!isOpen || selectedPayment !== 'upi' || !isUpiConfigured() || finalTotal <= 0) {
+      setUpiQrDataUrl('');
+      return;
+    }
+    let active = true;
+    buildUpiQrDataUrl({ amount: finalTotal, orderId })
+      .then(url => { if (active) setUpiQrDataUrl(url); })
+      .catch(() => { if (active) setUpiQrDataUrl(''); });
+    return () => { active = false; };
+  }, [isOpen, selectedPayment, finalTotal, orderId]);
+
   if (!isOpen) return null;
 
   const validateForm = () => {
@@ -81,10 +107,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     if (!address.areaStreet.trim()) errors.areaStreet = 'Area / Locality required';
     if (!address.city.trim()) errors.city = 'City required';
     
-    if (selectedPayment === 'upi' && upiApp !== 'qr' && !upiId.includes('@')) {
-      errors.upiId = 'Enter a valid UPI ID (e.g. yourname@oksbi)';
-    }
-
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -107,7 +129,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     const deliveryDate = pinRes.valid ? pinRes.deliveryDateStr : 'Within 3-4 Days';
 
     const newOrder: Order = {
-      id: `VY-${Math.floor(100000 + Math.random() * 900000)}`,
+      id: orderId,
       items: [...cart],
       shippingAddress: address,
       subtotal,
@@ -115,7 +137,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
       shippingFee,
       total: finalTotal,
       paymentMethod: selectedPayment,
-      paymentDetails: selectedPayment === 'upi' ? { upiId: upiApp === 'qr' ? 'Awaiting UPI payment link' : upiId } : undefined,
+      paymentDetails: selectedPayment === 'upi' ? { upiId: UPI_VPA } : undefined,
       orderDate: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
       estimatedDeliveryDate: deliveryDate,
       status: 'Confirmed',
@@ -143,6 +165,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
     addOrder(newOrder);
     onOrderPlaced(newOrder);
+    // Next order in this session needs its own reference.
+    setOrderId(makeOrderId());
   };
 
   return (
@@ -310,6 +334,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {/* UPI */}
+                {isUpiConfigured() && (
                 <button
                   type="button"
                   onClick={() => setSelectedPayment('upi')}
@@ -328,6 +353,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     <span className="text-[10px] text-stone-500">GPay, PhonePe, Paytm</span>
                   </div>
                 </button>
+                )}
 
                 {/* COD */}
                 <button
@@ -351,53 +377,61 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               {/* UPI Sub-Options */}
               {selectedPayment === 'upi' && (
                 <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 space-y-3 animate-fade-in text-xs">
-                  <div className="flex gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setUpiApp('qr')}
-                      className={`px-3 py-1.5 rounded-lg font-bold text-xs transition ${
-                        upiApp === 'qr' ? 'bg-stone-900 text-white' : 'bg-white text-stone-700 border'
-                      }`}
-                    >
-                      Instant UPI QR Code
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setUpiApp('gpay')}
-                      className={`px-3 py-1.5 rounded-lg font-bold text-xs transition ${
-                        upiApp === 'gpay' ? 'bg-stone-900 text-white' : 'bg-white text-stone-700 border'
-                      }`}
-                    >
-                      Enter UPI ID
-                    </button>
+                  {/* Payee QR — scannable by any UPI app */}
+                  <div className="flex items-center gap-4 bg-white p-3.5 rounded-xl border border-stone-200">
+                    <div className="w-24 h-24 rounded-lg border border-stone-200 bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                      {upiQrDataUrl ? (
+                        <img
+                          src={upiQrDataUrl}
+                          alt={`UPI QR to pay ${formatINR(finalTotal)} to ${UPI_VPA}`}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <QrCode className="w-10 h-10 text-stone-300 animate-pulse" />
+                      )}
+                    </div>
+                    <div className="space-y-1">
+                      <p className="font-bold text-stone-900">
+                        Scan to pay {formatINR(finalTotal)}
+                      </p>
+                      <p className="text-[11px] text-stone-500">
+                        Works with PhonePe, Google Pay, Paytm, BHIM or any UPI app.
+                      </p>
+                      <p className="text-[10px] text-stone-500">
+                        Paying to <strong className="text-stone-700">{UPI_VPA}</strong>
+                      </p>
+                      <p className="text-[10px] text-stone-500">
+                        Reference <strong className="text-stone-700">{orderId}</strong>
+                      </p>
+                    </div>
                   </div>
 
-                  {upiApp === 'qr' ? (
-                    <div className="flex items-center gap-4 bg-white p-3.5 rounded-xl border border-stone-200">
-                      <div className="w-20 h-20 bg-stone-100 border-2 border-dashed border-stone-400 rounded-lg flex items-center justify-center text-stone-700 shrink-0">
-                        <QrCode className="w-12 h-12 text-stone-900" />
+                  {/* Direct app hand-off — only resolves on a phone with the app installed */}
+                  {supportsUpiIntent() && (
+                    <div className="space-y-1.5">
+                      <p className="text-stone-700 font-bold">Or open your UPI app directly</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {(['phonepe', 'gpay', 'paytm', 'any'] as UpiApp[]).map(app => (
+                          <a
+                            key={app}
+                            href={buildUpiUrl(app, { amount: finalTotal, orderId })}
+                            className={`px-3 py-2 rounded-lg font-bold text-xs text-center transition border ${
+                              app === 'phonepe'
+                                ? 'bg-[#5F259F] text-white border-[#5F259F] hover:bg-[#4d1e80]'
+                                : 'bg-white text-stone-700 border-stone-200 hover:border-stone-400'
+                            }`}
+                          >
+                            {UPI_APP_LABELS[app]}
+                          </a>
+                        ))}
                       </div>
-                      <div className="space-y-1">
-                        <p className="font-bold text-stone-900">UPI payment link on WhatsApp</p>
-                        <p className="text-[11px] text-stone-500">
-                          We&apos;ll send a UPI QR for {formatINR(finalTotal)} on WhatsApp once we
-                          confirm your order. Nothing is charged now.
-                        </p>
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      <label className="block text-stone-700 font-bold mb-1">Your UPI ID (VPA)</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. yourname@okhdfcbank"
-                        value={upiId}
-                        onChange={(e) => setUpiId(e.target.value)}
-                        className="w-full bg-white border border-stone-300 rounded-xl px-3 py-2 text-stone-800 focus:ring-1 focus:ring-amber-800"
-                      />
-                      {formErrors.upiId && <p className="text-rose-600 text-[10px] mt-0.5">{formErrors.upiId}</p>}
                     </div>
                   )}
+
+                  <p className="text-[11px] text-stone-600 bg-amber-50 border border-amber-200 rounded-lg p-2.5">
+                    Pay first, then tap <strong>Send order on WhatsApp</strong> below and attach
+                    the payment screenshot. We confirm your order once payment reflects.
+                  </p>
                 </div>
               )}
 
