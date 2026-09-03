@@ -12,7 +12,7 @@ const CATEGORIES = [
   { id: 'kurta-sets', label: 'Kurta Sets', gender: 'women', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=300&q=80' },
   { id: 'sarees', label: 'Banarasi Sarees', gender: 'women', image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=300&q=80' },
   { id: 'lehengas', label: 'Lehenga Choli', gender: 'women', image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=300&q=80' },
-  { id: 'men-kurtas', label: 'Men Kurtas', gender: 'men', image: 'https://images.unsplash.com/photo-1621786030684-4c64829cff1b?auto=format&fit=crop&w=300&q=80' },
+  { id: 'men-kurtas', label: 'Men Kurtas', gender: 'men', image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=300&q=80' },
   { id: 'nehru-jackets', label: 'Nehru Jackets', gender: 'men', image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=300&q=80' },
   { id: 'linen-shirts', label: 'Khadi & Linen Shirts', gender: 'men', image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=300&q=80' },
   { id: 'women-dresses', label: 'Indo-Western Dresses', gender: 'women', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=300&q=80' },
@@ -30,7 +30,7 @@ export const CategoryHighlights: React.FC<CategoryHighlightsProps> = ({
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="w-full min-w-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-serif font-bold text-stone-900">
@@ -41,7 +41,7 @@ export const CategoryHighlights: React.FC<CategoryHighlightsProps> = ({
       </div>
 
       {/* Horizontal scrolling container */}
-      <div className="flex gap-4 overflow-x-auto pb-3 pt-1 scrollbar-none snap-x">
+      <div className="w-full flex gap-3 sm:gap-4 overflow-x-auto pb-3 pt-1 scrollbar-none snap-x">
         {filtered.map(cat => {
           const isSelected = selectedCategory === cat.id;
           return (

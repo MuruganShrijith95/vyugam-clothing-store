@@ -264,7 +264,7 @@ export const PRODUCTS_DATA: Product[] = [
     originalPrice: 4299,
     discountPercentage: 35,
     images: [
-      'https://images.unsplash.com/photo-1621786030684-4c64829cff1b?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1000&q=80',
       'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1000&q=80'
     ],
     description: 'Exemplifying timeless Indian regal aesthetics, this knee-length Chanderi silk kurta features self-woven micro patterns, concealed placket, side slits, and comes paired with a breathable cotton-blend churidar.',
@@ -321,7 +321,7 @@ export const PRODUCTS_DATA: Product[] = [
     discountPercentage: 37,
     images: [
       'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1621786030684-4c64829cff1b?auto=format&fit=crop&w=1000&q=80'
+      'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1000&q=80'
     ],
     description: 'A stately Nehru jacket tailored in rich brocade jacquard with embossed metal buttons, breast pocket for a pocket square, and structured slim silhouette.',
     fabric: 'Raw Silk',
@@ -411,7 +411,7 @@ export const PRODUCTS_DATA: Product[] = [
     discountPercentage: 41,
     images: [
       'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1621786030684-4c64829cff1b?auto=format&fit=crop&w=1000&q=80'
+      'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=1000&q=80'
     ],
     description: 'Crafted for grooms and wedding celebrations, featuring micro-bead zardozi embroidery on plush midnight blue velvet with a royal stole and matching tapered churidar.',
     fabric: 'Raw Silk',

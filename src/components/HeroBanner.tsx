@@ -116,7 +116,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onSelectGender, onExplor
               className="group cursor-pointer relative rounded-2xl overflow-hidden shadow-2xl border border-stone-700/50 transform hover:-translate-y-1 transition duration-300 aspect-[3/4] mt-6"
             >
               <img
-                src="https://images.unsplash.com/photo-1621786030684-4c64829cff1b?auto=format&fit=crop&w=700&q=80"
+                src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=700&q=80"
                 alt="Men's Indian Ethnic & Linen Collection"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
               />

@@ -43,10 +43,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 transition-all shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4">
+        <div className="flex items-center justify-between h-20 gap-2 sm:gap-4 min-w-0">
           
           {/* Mobile menu trigger */}
-          <div className="flex items-center lg:hidden gap-2">
+          <div className="flex items-center lg:hidden gap-1 shrink-0">
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 -ml-2 text-stone-700 hover:text-stone-950 rounded-lg focus:outline-none"
@@ -56,28 +56,28 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
             <button
               onClick={onToggleMobileFilters}
-              className="p-2 text-stone-700 hover:text-amber-900 rounded-lg flex items-center gap-1 text-xs font-semibold bg-stone-100 px-2.5 py-1.5"
+              className="p-2 text-stone-700 hover:text-amber-900 rounded-lg flex items-center gap-1 text-xs font-semibold bg-stone-100 px-2 sm:px-2.5 py-1.5 shrink-0"
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span>Filters</span>
+              <span className="hidden sm:inline">Filters</span>
             </button>
           </div>
 
           {/* Brand Logo */}
-          <div className="flex items-center gap-6">
-            <a href="#" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden border border-amber-500/50 shadow-md bg-stone-900 shrink-0 p-0.5 group-hover:border-amber-400 transition">
+          <div className="flex items-center gap-3 lg:gap-6 min-w-0">
+            <a href="#" className="flex items-center gap-2 sm:gap-3 group min-w-0">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden border border-amber-500/50 shadow-md bg-stone-900 shrink-0 p-0.5 group-hover:border-amber-400 transition">
                 <img
                   src="/logo.jpg"
                   alt="VYUGAM Logo"
                   className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition"
                 />
               </div>
-              <div className="flex flex-col text-left">
-                <span className="font-serif text-2xl sm:text-2xl font-extrabold tracking-wider text-stone-900 group-hover:text-amber-900 transition flex items-center gap-1">
+              <div className="flex flex-col text-left min-w-0">
+                <span className="font-serif text-lg sm:text-2xl font-extrabold tracking-wider text-stone-900 group-hover:text-amber-900 transition truncate">
                   VYUGAM
                 </span>
-                <span className="text-[9px] tracking-[0.22em] font-bold text-amber-800 uppercase -mt-0.5">
+                <span className="hidden sm:block text-[9px] tracking-[0.22em] font-bold text-amber-800 uppercase -mt-0.5 truncate">
                   Luxury Indian Couture
                 </span>
               </div>
@@ -121,7 +121,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Search bar (Desktop) */}
-          <div className="hidden md:flex flex-1 max-w-md mx-4 relative">
+          <div className="hidden lg:flex flex-1 min-w-0 max-w-md mx-4 relative">
             <div className="relative w-full">
               <input
                 type="text"
@@ -143,12 +143,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Right Action Icons */}
-          <div className="flex items-center gap-1.5 sm:gap-3">
+          <div className="flex items-center gap-0.5 sm:gap-3 shrink-0">
             
             {/* Mobile search toggle */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="md:hidden p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-100"
+              className="lg:hidden p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-100"
               aria-label="Search"
             >
               <Search className="w-5 h-5" />
@@ -157,7 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Orders Tracking */}
             <button
               onClick={onOpenOrders}
-              className="p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-100 transition relative flex items-center gap-1 text-xs font-medium"
+              className="hidden sm:flex p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-100 transition relative items-center gap-1 text-xs font-medium"
               title="Your Orders"
             >
               <Package className="w-5 h-5" />
@@ -167,7 +167,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Wishlist Icon */}
             <button
               onClick={onOpenWishlist}
-              className="p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-100 transition relative"
+              className="hidden sm:block p-2 text-stone-700 hover:text-stone-950 rounded-full hover:bg-stone-100 transition relative"
               title="Wishlist"
               aria-label="Wishlist"
             >
@@ -202,7 +202,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Mobile Search Bar Dropdown */}
         {searchOpen && (
-          <div className="md:hidden pb-4 pt-1">
+          <div className="lg:hidden pb-4 pt-1">
             <div className="relative w-full">
               <input
                 type="text"
