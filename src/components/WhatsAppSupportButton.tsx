@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
+import { STORE_NAME, WHATSAPP_NUMBER, isWhatsAppConfigured } from '../config/store';
 
 export const WhatsAppSupportButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,9 +10,11 @@ export const WhatsAppSupportButton: React.FC = () => {
     e.preventDefault();
     if (!userQuery.trim()) return;
     
-    // Construct WhatsApp intent URL (Indian phone number format)
-    const encodedText = encodeURIComponent(`Hi VastraVogue Stylist! I have a question: ${userQuery}`);
-    window.open(`https://api.whatsapp.com/send?phone=919876543210&text=${encodedText}`, '_blank');
+    if (!isWhatsAppConfigured()) return;
+
+    // Construct WhatsApp intent URL (number is country code + digits, no '+')
+    const encodedText = encodeURIComponent(`Hi ${STORE_NAME} Stylist! I have a question: ${userQuery}`);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`, '_blank', 'noopener,noreferrer');
     setUserQuery('');
     setIsOpen(false);
   };

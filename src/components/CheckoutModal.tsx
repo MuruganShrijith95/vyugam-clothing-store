@@ -11,13 +11,16 @@ import {
   CheckCircle2, 
   Sparkles,
   Smartphone,
-  Lock
+  Lock,
+  MessageCircle
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useCart } from '../context/CartContext';
 import { ShippingAddress, PaymentMethod, Order } from '../types';
 import { checkDeliveryPincode, formatINR } from '../utils/pincodeChecker';
 import { INDIAN_STATES } from '../data/products';
+import { buildOrderWhatsAppUrl, openWhatsAppOrder } from '../utils/whatsappOrder';
+import { isWhatsAppConfigured } from '../config/store';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -50,6 +53,8 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   const [upiApp, setUpiApp] = useState<'gpay' | 'phonepe' | 'paytm' | 'qr'>('qr');
   const [isProcessing, setIsProcessing] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  // Held when the browser blocks the WhatsApp tab, so we can offer a manual link.
+  const [blockedOrder, setBlockedOrder] = useState<Order | null>(null);
 
   // Auto-fill city/state when pincode changes
   useEffect(() => {
@@ -88,41 +93,56 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     e.preventDefault();
     if (!validateForm()) return;
 
-    setIsProcessing(true);
-
-    // Simulate order placement
-    setTimeout(() => {
-      setIsProcessing(false);
-
-      // Trigger celebration confetti
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.6 }
+    if (!isWhatsAppConfigured()) {
+      setFormErrors({
+        submit: 'Ordering is temporarily unavailable. Please contact the store directly.'
       });
+      return;
+    }
 
-      const pinRes = checkDeliveryPincode(address.pincode);
-      const deliveryDate = pinRes.valid ? pinRes.deliveryDateStr : 'Within 3-4 Days';
+    setIsProcessing(true);
+    setBlockedOrder(null);
 
-      const newOrder: Order = {
-        id: `VY-${Math.floor(100000 + Math.random() * 900000)}`,
-        items: [...cart],
-        shippingAddress: address,
-        subtotal,
-        discount: couponDiscount,
-        shippingFee,
-        total: finalTotal,
-        paymentMethod: selectedPayment,
-        paymentDetails: selectedPayment === 'upi' ? { upiId: upiApp === 'qr' ? 'Scanned via UPI QR' : upiId } : undefined,
-        orderDate: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
-        estimatedDeliveryDate: deliveryDate,
-        status: 'Confirmed',
-        trackingNumber: `BD${Math.floor(10000000 + Math.random() * 90000000)}IN`
-      };
+    const pinRes = checkDeliveryPincode(address.pincode);
+    const deliveryDate = pinRes.valid ? pinRes.deliveryDateStr : 'Within 3-4 Days';
 
-      addOrder(newOrder);
-      onOrderPlaced(newOrder);
-    }, 1500);
+    const newOrder: Order = {
+      id: `VY-${Math.floor(100000 + Math.random() * 900000)}`,
+      items: [...cart],
+      shippingAddress: address,
+      subtotal,
+      discount: couponDiscount,
+      shippingFee,
+      total: finalTotal,
+      paymentMethod: selectedPayment,
+      paymentDetails: selectedPayment === 'upi' ? { upiId: upiApp === 'qr' ? 'Awaiting UPI payment link' : upiId } : undefined,
+      orderDate: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+      estimatedDeliveryDate: deliveryDate,
+      status: 'Confirmed',
+      trackingNumber: `BD${Math.floor(10000000 + Math.random() * 90000000)}IN`
+    };
+
+    // Must run synchronously inside the submit handler — deferring this behind a
+    // timeout gets the WhatsApp tab blocked as an unsolicited popup.
+    const opened = openWhatsAppOrder(newOrder);
+    setIsProcessing(false);
+
+    if (!opened) {
+      setBlockedOrder(newOrder);
+      setFormErrors({
+        submit: 'Your browser blocked the WhatsApp window. Use the link below to send your order.'
+      });
+      return;
+    }
+
+    confetti({
+      particleCount: 120,
+      spread: 80,
+      origin: { y: 0.6 }
+    });
+
+    addOrder(newOrder);
+    onOrderPlaced(newOrder);
   };
 
   return (
@@ -288,7 +308,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 </h4>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {/* UPI */}
                 <button
                   type="button"
@@ -326,22 +346,6 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   </div>
                 </button>
 
-                {/* Cards / NetBanking */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedPayment('card')}
-                  className={`p-3 rounded-xl border text-left flex flex-col justify-between transition ${
-                    selectedPayment === 'card'
-                      ? 'border-amber-800 bg-amber-50/70 ring-1 ring-amber-800'
-                      : 'border-stone-200 hover:border-stone-300'
-                  }`}
-                >
-                  <CreditCard className="w-4 h-4 text-stone-700" />
-                  <div className="mt-2">
-                    <span className="text-xs font-bold text-stone-900 block">Cards / NetBanking</span>
-                    <span className="text-[10px] text-stone-500">Visa, RuPay, SBI, HDFC</span>
-                  </div>
-                </button>
               </div>
 
               {/* UPI Sub-Options */}
@@ -374,9 +378,10 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                         <QrCode className="w-12 h-12 text-stone-900" />
                       </div>
                       <div className="space-y-1">
-                        <p className="font-bold text-stone-900">Scan & Pay via any UPI App</p>
+                        <p className="font-bold text-stone-900">UPI payment link on WhatsApp</p>
                         <p className="text-[11px] text-stone-500">
-                          Open Google Pay, PhonePe, Paytm, or BHIM to complete {formatINR(finalTotal)}.
+                          We&apos;ll send a UPI QR for {formatINR(finalTotal)} on WhatsApp once we
+                          confirm your order. Nothing is charged now.
                         </p>
                       </div>
                     </div>
@@ -402,7 +407,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     <CheckCircle2 className="w-3.5 h-3.5 text-amber-800" /> Cash on Delivery Confirmed
                   </p>
                   <p className="text-[11px]">
-                    You can pay <strong className="text-amber-950">{formatINR(finalTotal)}</strong> in Cash or via UPI QR to the BlueDart courier partner at your doorstep.
+                    You can pay <strong className="text-amber-950">{formatINR(finalTotal)}</strong> in cash or via UPI to our delivery partner at your doorstep.
                   </p>
                 </div>
               )}
@@ -468,18 +473,33 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                 className="w-full py-3.5 bg-stone-900 hover:bg-amber-800 disabled:bg-stone-400 text-white rounded-xl text-xs font-extrabold tracking-wider transition flex items-center justify-center gap-2 shadow-lg shadow-stone-900/10"
               >
                 {isProcessing ? (
-                  <span>Processing Secure Order...</span>
+                  <span>Opening WhatsApp...</span>
                 ) : (
                   <>
-                    <Lock className="w-4 h-4 text-amber-400" />
-                    <span>CONFIRM & PLACE ORDER ({formatINR(finalTotal)})</span>
+                    <MessageCircle className="w-4 h-4 text-amber-400" />
+                    <span>SEND ORDER ON WHATSAPP ({formatINR(finalTotal)})</span>
                   </>
                 )}
               </button>
 
+              {formErrors.submit && (
+                <p className="text-rose-600 text-[11px] font-bold text-center">{formErrors.submit}</p>
+              )}
+
+              {blockedOrder && (
+                <a
+                  href={buildOrderWhatsAppUrl(blockedOrder)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-2.5 bg-[#075E54] hover:bg-[#0a7161] text-white rounded-xl text-xs font-extrabold tracking-wider text-center transition"
+                >
+                  OPEN WHATSAPP MANUALLY
+                </a>
+              )}
+
               <div className="flex items-center justify-center gap-1.5 text-[10px] text-stone-500 text-center">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>256-bit Bank Grade Encryption &bull; Genuine Indian Handloom</span>
+                <span>Order confirmed on WhatsApp &bull; Genuine Indian Handloom</span>
               </div>
             </div>
 
