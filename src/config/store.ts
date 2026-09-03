@@ -17,14 +17,14 @@ export const WHATSAPP_NUMBER: string = '917550371346';
 // ---------------------------------------------------------------------------
 // The public username of the shop's Telegram account or channel, WITHOUT the
 // leading '@'. Resolves to https://t.me/<username>
-export const TELEGRAM_USERNAME: string = 'vyugamstore';
+export const TELEGRAM_USERNAME: string = 'vyugam_store';
 
 // ---------------------------------------------------------------------------
 // UPI
 // ---------------------------------------------------------------------------
 // The shop's Virtual Payment Address that receives money, e.g. 'vyugam@okhdfcbank'.
 // This is the payee ('pa') in every UPI intent link and QR the site generates.
-export const UPI_VPA: string = 'vyugam@upi';
+export const UPI_VPA: string = '7550371346@ybl';
 
 // Name shown in the customer's UPI app while confirming payment. Keep it close
 // to the name registered against the VPA so the payment doesn't look suspect.
